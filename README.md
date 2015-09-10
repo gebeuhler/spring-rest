@@ -2,12 +2,26 @@
 Spring booth app with REST and H2
 
 
-Create a REST API that can create, read, update, and delete "People" using any of the Spring projects and an in-memory database for persistence.  Track your changes/progress using GitHub, and share the GitHub repository with us when you’re done.  Add other REST API endpoints to group “People” into “Families.”  If you’re someone who always goes above and beyond, build a simple front end to add, update, delete and list the people.
+Create a REST API that can create, read, update, and delete "People" using any of the Spring projects and an in-memory database for persistence.  Track your changes/progress using GitHub, and share the GitHub repository with us when you’re done.  Add other REST API endpoints to group “People” into “Families.” 
 
-There are many ways to approach this so feel free to use what you think is best.  But here are some things you might want to consider:
-- IDE: whatever you prefer
-- Build Tools: Maven, Gradle
-- Frameworks: Spring MVC, Spring Data, Spring Data JPA, Spring Data Rest, and/or any others you need to get the job done.
-- Databases: H2Database, HSQLDB
 
-Allotted time: 7 days
+Sample Usage:
+
+Start application: 
+navigate to myartifact directory
+./gradlew bootRun 
+
+Create Person
+$ curl -i -X POST -H "Content-Type:application/json" -d '{  "firstName" : "John",  "lastName" : "Doe" }' http://localhost:8080/people
+
+Update Person
+$ curl -X PATCH -H "Content-Type:application/json" -d '{ "firstName": "Abraham" }' http://localhost:8080/people/1
+
+Delete Person
+$ curl -X DELETE http://localhost:8080/people/1
+
+Create Person in Family
+$ curl -i -X POST -H "Content-Type:application/json" -d '{  "firstName" : "John",  "lastName" : "Doe" }' http://localhost:8080/family/1/members
+
+Get all members of family
+$ curl http://localhost:8080/family/search/findByLastName?last_name=Doe
